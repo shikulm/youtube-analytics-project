@@ -69,6 +69,17 @@ class Channel:
     def view_count(self):
         return self.__view_count
 
+    def to_json(self, file_name):
+        """сохраняет в файл значения атрибутов экземпляра Channel"""
+        #  Создаем словарь со значениями свойств
+        dict_channel = {"channel_id": self.channel_id, "title": self.title, "description": self.description, "url": self.url, \
+                        "subscriber_count": self.subscriber_count, "video_count": self.video_count, "view_count": self.view_count}
+
+        # Сохрангяем в файл
+        with open(file_name, "w", encoding="utf-8") as f:
+            json.dump(dict_channel, f)
+
+
 
 if __name__ == '__main__':
     vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')

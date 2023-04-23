@@ -1,3 +1,5 @@
+import googleapiclient.discovery
+
 from src.channel import *
 import pytest
 
@@ -20,11 +22,17 @@ def test_init(vdud):
 def test_property_without_setter(vdud):
     with pytest.raises(AttributeError):
         vdud.channel_id = 'Новое название'
+        vdud.title = "Новый"
         vdud.video_count = 200
         vdud.subscriber_count = 256
         vdud.view_count = 345
         vdud.url = "новый url"
         vdud.description == "новое описание"
+
+
+def test_get_service():
+    API_YT = Channel.get_service()
+    assert isinstance(API_YT, googleapiclient.discovery.Resource)
 
 
 
