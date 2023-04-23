@@ -16,13 +16,14 @@ class Channel:
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.channel_id = channel_id
-        self.channel = Channel.youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
+        self.channel = Channel.youtube.channels().list(id=channel_id, part='snippet,statistics,contentDetails,topicDetails').execute()
         self.title = self.channel['items'][0]['snippet']['title']
         self.description = self.channel['items'][0]['snippet']['description']
-        self.url = self.channel['items'][0]['snippet']['thumbnails']['default']['url']
-        self.subscriber_count = self.channel['items'][0]['statistics']['subscriberCount']
-        self.video_count = self.channel['items'][0]['statistics']['videoCount']
-        self.view_count = self.channel['items'][0]['statistics']['viewCount']
+        self.url = "https://www.youtube.com/channel/" + self.channel_id
+        # self.url = self.channel['items'][0]['snippet']['thumbnails']['default']['url']
+        self.subscriber_count = int(self.channel['items'][0]['statistics']['subscriberCount'])
+        self.video_count = int(self.channel['items'][0]['statistics']['videoCount'])
+        self.view_count = int(self.channel['items'][0]['statistics']['viewCount'])
 
 
     def print_info(self) -> None:
@@ -33,3 +34,21 @@ class Channel:
 if __name__ == '__main__':
     vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
     vdud.print_info()
+
+    # получаем значения атрибутов
+    # print(vdud.title)  # вДудь
+    # print(vdud.video_count)  # 163 (может уже больше)
+    # print(vdud.url)  # https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA
+
+
+    # video_id = '4jRSy-_CLFg'  # Редакция плейлист анти-тревел
+    # video_response = Channel.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
+    #                                        id=video_id
+    #                                        ).execute()
+    # print(json.dumps(video_response, indent=2, ensure_ascii=False))
+    #
+    # # vdud.printj(video_response)
+    # video_title: str = video_response['items'][0]['snippet']['title']
+    # view_count: int = video_response['items'][0]['statistics']['viewCount']
+    # like_count: int = video_response['items'][0]['statistics']['likeCount']
+    # comment_count: int = video_response['items'][0]['statistics']['commentCount']
