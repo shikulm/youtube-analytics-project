@@ -20,6 +20,11 @@ def test_init(vdud):
 def test_property_without_setter(vdud):
     with pytest.raises(AttributeError):
         vdud.channel_id = 'Новое название'
+        vdud.video_count = 200
+        vdud.subscriber_count = 256
+        vdud.view_count = 345
+        vdud.url = "новый url"
+        vdud.description == "новое описание"
 
 
 
