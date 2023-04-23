@@ -1,4 +1,5 @@
 import googleapiclient.discovery
+import json
 
 from src.channel import *
 import pytest
@@ -35,7 +36,19 @@ def test_get_service():
     assert isinstance(API_YT, googleapiclient.discovery.Resource)
 
 
+def test_json(vdud):
+    vdud.to_json("vdud.json")
 
+    with open("vdud.json", "r", encoding="utf-8") as f:
+        dict_json = json.load(f)
+
+    assert dict_json["channel_id"] == vdud.channel_id
+    assert dict_json["title"] == vdud.title
+    assert dict_json["description"] == vdud.description
+    assert dict_json["url"] == vdud.url
+    assert dict_json["subscriber_count"] == vdud.subscriber_count
+    assert dict_json["video_count"] == vdud.video_count
+    assert dict_json["view_count"] == vdud.view_count
 
 
 

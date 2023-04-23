@@ -77,12 +77,14 @@ class Channel:
 
         # Сохрангяем в файл
         with open(file_name, "w", encoding="utf-8") as f:
-            json.dump(dict_channel, f)
+            json.dump(dict_channel, f, indent=4, ensure_ascii=False)
 
 
 
 if __name__ == '__main__':
     vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
+    print(vdud.title)
+    vdud.to_json('vdud.json')
     # vdud.print_info()
 
     print(type(Channel.get_service()))
