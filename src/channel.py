@@ -26,6 +26,13 @@ class Channel:
         self.__view_count = int(self.channel['items'][0]['statistics']['viewCount'])
 
 
+    @classmethod
+    def get_service(cls):
+        """класс-метод get_service(), возвращающий объект для работы с YouTube API"""
+        return cls.youtube
+
+
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
@@ -65,7 +72,9 @@ class Channel:
 
 if __name__ == '__main__':
     vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
-    vdud.print_info()
+    # vdud.print_info()
+
+    print(type(Channel.get_service()))
 
     # получаем значения атрибутов
     # print(vdud.title)  # вДудь
