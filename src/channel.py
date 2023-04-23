@@ -78,31 +78,3 @@ class Channel:
         # Сохрангяем в файл
         with open(file_name, "w", encoding="utf-8") as f:
             json.dump(dict_channel, f, indent=4, ensure_ascii=False)
-
-
-
-if __name__ == '__main__':
-    vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
-    print(vdud.title)
-    vdud.to_json('vdud.json')
-    # vdud.print_info()
-
-    print(type(Channel.get_service()))
-
-    # получаем значения атрибутов
-    # print(vdud.title)  # вДудь
-    # print(vdud.video_count)  # 163 (может уже больше)
-    # print(vdud.url)  # https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA
-
-
-    # video_id = '4jRSy-_CLFg'  # Редакция плейлист анти-тревел
-    # video_response = Channel.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
-    #                                        id=video_id
-    #                                        ).execute()
-    # print(json.dumps(video_response, indent=2, ensure_ascii=False))
-    #
-    # # vdud.printj(video_response)
-    # video_title: str = video_response['items'][0]['snippet']['title']
-    # view_count: int = video_response['items'][0]['statistics']['viewCount']
-    # like_count: int = video_response['items'][0]['statistics']['likeCount']
-    # comment_count: int = video_response['items'][0]['statistics']['commentCount']
