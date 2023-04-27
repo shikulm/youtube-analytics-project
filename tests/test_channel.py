@@ -8,7 +8,7 @@ import pytest
 def vdud():
     return Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
 
-def test_init(vdud):
+def test__init__(vdud):
     # vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
 
     # получаем значения атрибутов
@@ -18,6 +18,9 @@ def test_init(vdud):
     assert vdud.view_count >= 1984208634
     assert vdud.url == "https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA"
     assert vdud.description == "Здесь задают вопросы"
+
+def test__str__(vdud):
+    assert str(vdud) == "вДудь (https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA)"
 
 
 def test_property_without_setter(vdud):

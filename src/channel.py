@@ -27,7 +27,7 @@ class Channel:
 
 
     def __str__(self):
-        return f"{self.title}({self.__url})"
+        return f"{self.title} ({self.__url})"
 
 
     @classmethod
