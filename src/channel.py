@@ -42,6 +42,11 @@ class Channel:
             raise ValueError('Неправильный тип данных аргумента')
         return self.subscriber_count == other.subscriber_count
 
+    def __ne__(self, other):
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count != other.subscriber_count
+
     @classmethod
     def get_service(cls):
         """класс-метод get_service(), возвращающий объект для работы с YouTube API"""
