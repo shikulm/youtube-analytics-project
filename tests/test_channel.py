@@ -8,6 +8,11 @@ import pytest
 def vdud():
     return Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
 
+
+@pytest.fixture()
+def redactsiya():
+    return Channel('UC1eFXmJNkjITxPFWTy6RsWg')
+
 def test__init__(vdud):
     # vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
 
@@ -22,6 +27,9 @@ def test__init__(vdud):
 def test__str__(vdud):
     assert str(vdud) == "вДудь (https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA)"
 
+
+def test__add__(vdud, redactsiya):
+    assert vdud + redactsiya == vdud.subscriber_count + redactsiya.subscriber_count
 
 def test_property_without_setter(vdud):
     with pytest.raises(AttributeError):
