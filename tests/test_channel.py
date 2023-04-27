@@ -92,6 +92,18 @@ def test__gt__ValueError(vdud):
     with pytest.raises(ValueError):
         vdud > 5
 
+
+
+def test__ge__(vdud, redactsiya):
+    """Тест >="""
+    assert (vdud >= redactsiya) == (vdud.subscriber_count >= redactsiya.subscriber_count)
+
+
+def test__ge__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud >= 5
+
+
 def test_property_without_setter(vdud):
     with pytest.raises(AttributeError):
         vdud.channel_id = 'Новое название'
