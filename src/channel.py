@@ -26,6 +26,10 @@ class Channel:
         self.__view_count = int(self.channel['items'][0]['statistics']['viewCount'])
 
 
+    def __str__(self):
+        return f"{self.title}({self.__url})"
+
+
     @classmethod
     def get_service(cls):
         """класс-метод get_service(), возвращающий объект для работы с YouTube API"""
