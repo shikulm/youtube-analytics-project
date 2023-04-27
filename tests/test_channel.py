@@ -45,6 +45,14 @@ def test__sub__ValueError(vdud):
         vdud - 5
 
 
+def test__eq__(vdud, redactsiya):
+    assert (vdud == redactsiya) == (vdud.subscriber_count == redactsiya.subscriber_count)
+
+
+def test__eq__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud == 5
+
 def test_property_without_setter(vdud):
     with pytest.raises(AttributeError):
         vdud.channel_id = 'Новое название'
