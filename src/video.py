@@ -1,4 +1,4 @@
-from channel import Channel
+from src.channel import Channel
 import json
 
 class Video:
@@ -9,10 +9,14 @@ class Video:
         self.__video_response = self.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
                                                id=video_id
                                                ).execute()
-        self.view_title = self.__video_response['items'][0]['snippet']['title']
-        self.view_url = f"https://youtu.be/{self.__video_id}"
-        self.view_count: int = self.__video_response['items'][0]['statistics']['viewCount']
-        self.like_count: int = self.__video_response['items'][0]['statistics']['likeCount']
+        self.video_title: str = self.__video_response['items'][0]['snippet']['title']
+        self.video_url: str = f"https://youtu.be/{self.__video_id}"
+        self.video_count: int = int(self.__video_response['items'][0]['statistics']['viewCount'])
+        self.video_like_count: int = int(self.__video_response['items'][0]['statistics']['likeCount'])
+
+
+    def __str__(self):
+        return self.video_title
 
     @property
     def video_id(self):
