@@ -6,6 +6,11 @@ def video1():
     return Video('9lO06Zxhu88')
 
 
+@pytest.fixture()
+def plvideo1():
+    return PLVideo('BBotskuyw_M', 'PL7Ntiz7eTKwrqmApjln9u4ItzhDLRtPuD')
+
+
 def test_video__init__():
     video1 = Video('9lO06Zxhu88')
     assert video1.video_id == "9lO06Zxhu88"
@@ -17,3 +22,13 @@ def test_video__init__():
 
 def test_video__str__(video1):
     assert str(video1) == video1.video_title
+
+
+def test_plvideo__init__():
+    video2 = PLVideo('BBotskuyw_M', 'PL7Ntiz7eTKwrqmApjln9u4ItzhDLRtPuD')
+    assert video2.video_id == 'BBotskuyw_M'
+    assert video2.playlist_id == 'PL7Ntiz7eTKwrqmApjln9u4ItzhDLRtPuD'
+
+
+def test_plvideo__str__(plvideo1):
+    assert str(plvideo1) == 'Пушкин: наше все?'
