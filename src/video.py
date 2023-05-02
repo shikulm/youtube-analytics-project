@@ -33,6 +33,3 @@ class PLVideo(Video):
         self.playlist_id = playlist_id
 
 
-
-video1 = Video('9lO06Zxhu88')
-video1.print_info()
