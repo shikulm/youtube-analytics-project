@@ -27,5 +27,12 @@ class Video:
         print(json.dumps(self.__video_response, indent=2, ensure_ascii=False))
 
 
+class PLVideo(Video):
+    def __init__(self, video_id, playlist_id):
+        super().__init__(video_id)
+        self.playlist_id = playlist_id
+
+
+
 video1 = Video('9lO06Zxhu88')
 video1.print_info()
