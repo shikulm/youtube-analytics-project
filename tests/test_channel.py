@@ -8,7 +8,12 @@ import pytest
 def vdud():
     return Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
 
-def test_init(vdud):
+
+@pytest.fixture()
+def redactsiya():
+    return Channel('UC1eFXmJNkjITxPFWTy6RsWg')
+
+def test__init__(vdud):
     # vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
 
     # получаем значения атрибутов
@@ -18,6 +23,85 @@ def test_init(vdud):
     assert vdud.view_count >= 1984208634
     assert vdud.url == "https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA"
     assert vdud.description == "Здесь задают вопросы"
+
+def test__str__(vdud):
+    assert str(vdud) == "вДудь (https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA)"
+
+
+def test__add__(vdud, redactsiya):
+    assert vdud + redactsiya == vdud.subscriber_count + redactsiya.subscriber_count
+
+def test__add__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud + 5
+
+
+def test__sub__(vdud, redactsiya):
+    assert vdud - redactsiya == vdud.subscriber_count - redactsiya.subscriber_count
+    assert redactsiya - vdud == redactsiya.subscriber_count - vdud.subscriber_count
+
+def test__sub__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud - 5
+
+
+def test__eq__(vdud, redactsiya):
+    assert (vdud == redactsiya) == (vdud.subscriber_count == redactsiya.subscriber_count)
+
+
+def test__eq__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud == 5
+
+
+def test__ne__(vdud, redactsiya):
+    assert (vdud != redactsiya) == (vdud.subscriber_count != redactsiya.subscriber_count)
+
+
+def test__ne__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud != 5
+
+
+def test__lt__(vdud, redactsiya):
+    """Тест <"""
+    assert (vdud < redactsiya) == (vdud.subscriber_count < redactsiya.subscriber_count)
+
+
+def test__lt__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud < 5
+
+
+def test__le__(vdud, redactsiya):
+    """Тест <="""
+    assert (vdud <= redactsiya) == (vdud.subscriber_count <= redactsiya.subscriber_count)
+
+
+def test__le__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud <= 5
+
+
+def test__gt__(vdud, redactsiya):
+    """Тест >"""
+    assert (vdud > redactsiya) == (vdud.subscriber_count > redactsiya.subscriber_count)
+
+
+def test__gt__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud > 5
+
+
+
+def test__ge__(vdud, redactsiya):
+    """Тест >="""
+    assert (vdud >= redactsiya) == (vdud.subscriber_count >= redactsiya.subscriber_count)
+
+
+def test__ge__ValueError(vdud):
+    with pytest.raises(ValueError):
+        vdud >= 5
 
 
 def test_property_without_setter(vdud):

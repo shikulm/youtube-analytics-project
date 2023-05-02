@@ -12,7 +12,6 @@ class Channel:
     # создать специальный объект для работы с API
     youtube = build('youtube', 'v3', developerKey=api_key)
 
-
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.__channel_id = channel_id
@@ -25,18 +24,65 @@ class Channel:
         self.__video_count = int(self.channel['items'][0]['statistics']['videoCount'])
         self.__view_count = int(self.channel['items'][0]['statistics']['viewCount'])
 
+    def __str__(self):
+        return f"{self.title} ({self.__url})"
+
+    def __add__(self, other):
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count + other.subscriber_count
+
+    def __sub__(self, other):
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count - other.subscriber_count
+
+    def __eq__(self, other):
+        """Проверка =="""
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count == other.subscriber_count
+
+    def __ne__(self, other):
+        """Проверка !="""
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count != other.subscriber_count
+
+
+    def __lt__(self, other):
+        """Проверка <"""
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count < other.subscriber_count
+
+    def __le__(self, other):
+        """Проверка <="""
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count <= other.subscriber_count
+
+    def __gt__(self, other):
+        """Проверка >"""
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count > other.subscriber_count
+
+    def __ge__(self, other):
+        """Проверка >="""
+        if not isinstance(other, Channel):
+            raise ValueError('Неправильный тип данных аргумента')
+        return self.subscriber_count >= other.subscriber_count
+
 
     @classmethod
     def get_service(cls):
         """класс-метод get_service(), возвращающий объект для работы с YouTube API"""
         return cls.youtube
 
-
-
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
-
 
     @property
     def channel_id(self):
@@ -59,11 +105,9 @@ class Channel:
     def subscriber_count(self):
         return self.__subscriber_count
 
-
     @property
     def video_count(self):
         return self.__video_count
-
 
     @property
     def view_count(self):
