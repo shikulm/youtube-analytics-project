@@ -39,8 +39,3 @@ class PLVideo(Video):
         self.playlist_id = playlist_id
 
 
-# vdud = Video('9lO06Zxhu88')
-# print(vdud.duration)
-# print(type(vdud.duration))
-# vdud = Video('4jRSy-_CLFg')
-# print(vdud.duration)

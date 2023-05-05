@@ -1,5 +1,5 @@
 import pytest
-from src.playList import PlayList
+from src.playlist import PlayList
 from src.video import PLVideo
 import datetime
 

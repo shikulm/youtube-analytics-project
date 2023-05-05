@@ -23,15 +23,6 @@ class PlayList:
 
 
         # Создание списка из видео плэфйлиста
-
-
-        # print(playlists)
-
-        # printj(playlists)
-        # for playlist in playlists['items']:
-        #     print(playlist)
-        #     print()
-
         playlist_videos_dic = self.youtube.playlistItems().list(playlistId=self.playlist_id,
                                                        part='snippet,contentDetails',
                                                        maxResults=50,
@@ -40,10 +31,7 @@ class PlayList:
 
         # print(playlist_videos)
         for playlist in playlist_videos_dic['items']:
-            # print(playlist)
-            # print(playlist['contentDetails']['videoId'])
-            self.playlist_videos.append(PLVideo(playlist['contentDetails']['videoId'], self.playlist_id))
-            # print(playlist)
+           self.playlist_videos.append(PLVideo(playlist['contentDetails']['videoId'], self.playlist_id))
 
     @property
     def total_duration(self) -> datetime.timedelta:
@@ -53,12 +41,8 @@ class PlayList:
     def show_best_video(self):
         """Возвращает ссылку на самое популярное видео из плейлиста (по количеству лайков)"""
         max_video_like_count = max([el.video_like_count for el in self.playlist_videos])
-        # print(max_video_like_count)
         return [el.video_url for el in self.playlist_videos if el.video_like_count == max_video_like_count][0]
 
 
 
-pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
-print(pl.playlist_videos)
-print(pl.total_duration)
-print(pl.show_best_video())
+
