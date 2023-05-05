@@ -15,7 +15,7 @@ class Video:
         self.video_url: str = f"https://youtu.be/{self.__video_id}"
         self.video_count: int = int(self.__video_response['items'][0]['statistics']['viewCount'])
         self.video_like_count: int = int(self.__video_response['items'][0]['statistics']['likeCount'])
-        iso_8601_duration = self.__video_response['contentDetails']['duration']
+        iso_8601_duration = self.__video_response['items'][0]['contentDetails']['duration']
         self.duration = isodate.parse_duration(iso_8601_duration)
 
     def __str__(self):
@@ -36,3 +36,6 @@ class PLVideo(Video):
         self.playlist_id = playlist_id
 
 
+# vdud = Video('9lO06Zxhu88')
+# print(vdud.duration)
+# print(type(vdud.duration))

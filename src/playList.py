@@ -19,6 +19,11 @@ class PlayList:
                                              ).execute()
         self.title = self.playlists["items"][0]['snippet']["title"]
         self.url = f"https://www.youtube.com/playlist?list={self.playlist_id}"
+
+
+        # Создание списка из видео плэфйлиста
+
+
         # print(playlists)
 
         # printj(playlists)
@@ -26,14 +31,17 @@ class PlayList:
         #     print(playlist)
         #     print()
 
-        # playlist_videos = self.youtube.playlistItems().list(playlistId=self.playlist_id,
-        #                                                part='snippet,contentDetails',
-        #                                                maxResults=50,
-        #                                                ).execute()
+        playlist_videos_dic = self.youtube.playlistItems().list(playlistId=self.playlist_id,
+                                                       part='snippet,contentDetails',
+                                                       maxResults=50,
+                                                       ).execute()
+        self.playlist_videos = []
+
         # print(playlist_videos)
-        # for playlist in playlist_videos['items']:
-        #     print(playlist)
-        #     print()
+        for playlist in playlist_videos_dic['items']:
+            self.playlist_videos.append(PLVideo(playlist['id'], self.playlist_id))
+            print(playlist)
+            print()
 
 
 pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')

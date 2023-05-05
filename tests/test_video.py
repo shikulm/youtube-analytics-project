@@ -32,3 +32,4 @@ def test_plvideo__init__():
 
 def test_plvideo__str__(plvideo1):
     assert str(plvideo1) == 'Пушкин: наше все?'
+
