@@ -39,9 +39,12 @@ class PlayList:
 
         # print(playlist_videos)
         for playlist in playlist_videos_dic['items']:
-            self.playlist_videos.append(PLVideo(playlist['id'], self.playlist_id))
-            print(playlist)
-            print()
+            # print(playlist)
+            # print(playlist['contentDetails']['videoId'])
+            self.playlist_videos.append(PLVideo(playlist['contentDetails']['videoId'], self.playlist_id))
+            # print(playlist)
+
 
 
 pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
+print(pl.playlist_videos)
