@@ -19,10 +19,15 @@ def test_video__init__():
     assert video1.video_count >= 0
     assert video1.video_like_count >= 0
 
+def test_video_error_id():
+    with pytest.raises(ValueError):
+        broken_video = Video('broken_video_id')
+        assert broken_video.title is None
+        assert broken_video.like_count is None
+
 
 def test_video__str__(video1):
     assert str(video1) == video1.video_title
-
 
 def test_plvideo__init__():
     video2 = PLVideo('BBotskuyw_M', 'PL7Ntiz7eTKwrqmApjln9u4ItzhDLRtPuD')
