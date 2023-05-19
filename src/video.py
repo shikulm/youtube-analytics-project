@@ -1,5 +1,5 @@
 from src.channel import Channel
-from service_youtube import ServiceYoutube
+from src.service_youtube import ServiceYoutube
 import json
 import isodate
 
@@ -34,7 +34,7 @@ class Video(ServiceYoutube):
         print(json.dumps(self.__video_response, indent=2, ensure_ascii=False))
 
 
-class PLVideo(Video):
+class PLVideo(Video, ServiceYoutube):
     def __init__(self, video_id, playlist_id):
         super().__init__(video_id)
         self.playlist_id = playlist_id
