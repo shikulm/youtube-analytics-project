@@ -1,10 +1,11 @@
 from src.channel import Channel
+from service_youtube import ServiceYoutube
 import json
 import isodate
 
 
-class Video:
-    youtube = Channel.get_service()
+class Video(ServiceYoutube):
+    # youtube = Channel.get_service()
 
     def __init__(self, video_id):
         self.__video_id = video_id
